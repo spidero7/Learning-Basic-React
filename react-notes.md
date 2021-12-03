@@ -23,3 +23,10 @@
 
 - git init
 - stworzenie pliku .gitignore
+
+**Instalacja parcela**
+
+- npm install -D parcel@1.12.3
+- "dev": "parcel src/index.html" - w scrpit w package.json
+- npm install react@17.0.1 react-dom@17.0.1
+- npm run dev

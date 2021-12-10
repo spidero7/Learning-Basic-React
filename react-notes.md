@@ -10,12 +10,15 @@
 - `npm run format`
 - install Prettier - Code formatter in VS Code extension if you don't have it
 
-**Instalacja ESlint**
+**ESlint**
 
 - `npm install -D eslint@7.18.0 eslint-config-prettier@8.1.0`
 - `"lint": "eslint \"src/\*_/_.{js,jsx}\" --quiet"` - dodajemy w "script" w package.json
 - `npm run lint`
 - instalacja ESLint - in VS Code extension if you don't have it
+- prettier has to be the last one in "extends" in .eslintrc.json
+
+- "plugins": ["react", "import", "jsx-a11y"] - w .eslintrc.json (modyfication: knowing react, importing things, accessibility)
 
 **Uruchomienie git**
 
@@ -142,3 +145,20 @@ document.getElementById('root') // Targeting root div in HTML file
 - The first argument could also be a variable, so long as that variable evaluates to a JSX expression.
 - The first argument is appended to whatever element is selected by the second argument
 - `ReactDOM.render()` is that it only updates DOM elements that have changed
+
+## 4. React Hooks
+
+- useState - to jest hook
+  - State allows us as developers to keep track of changes inside of our React components
+- pierwsza wartość w useState jest to wartoś domyślna - useState("Seattle, WA")
+- onChange - whenever user does sth function will be back e.g. onChange={(e) => setLocation(e.target.value)}
+- never add hooks in if statement or loop
+
+- `npm install -D eslint-plugin-react-hooks@4.2.0` - package that specific applies to react hooks
+- `"plugin: react-hooks/recommended",` - in .eslintrc.json (chacking bugs with hooks)
+
+**useState**
+
+- The useState Hook provides us an array containing two values:
+  - The actual value of the state.
+  - A function to update that value.

@@ -1,12 +1,26 @@
-import { useState } from "react"; // To add state to a functional component
+import { useState, useEffect } from "react"; // To add state and effect to a functional component
+import Pet from "./Pet";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const [location, setLocation] = useState("Seattle, WA");
+  const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
+  const [pets, setPets] = useState([]); // Store all of the pets coming back from the API
   const breeds = [];
+
+  useEffect(() => {
+    requestPets();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function requestPets() {
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+    const json = await res.json();
+    setPets(json.pets);
+  }
 
   return (
     <div className="search-params">
@@ -19,6 +33,22 @@ const SearchParams = () => {
             value={location}
             placeholder="Location"
           />
+        </label>
+        <label htmlFor="animal">
+          Animal
+          <select
+            id="animal"
+            value={animal}
+            onChange={(e) => setAnimal(e.target.value)}
+            onBlur={(e) => setAnimal(e.target.value)}
+          >
+            <option />
+            {ANIMALS.map((animal) => (
+              <option value={animal} key={animal}>
+                {animal}
+              </option>
+            ))}
+          </select>
         </label>
         <label htmlFor="breed">
           Breed
@@ -38,6 +68,14 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
+      {pets.map((pet) => (
+        <Pet
+          name={pet.name}
+          animal={pet.animal}
+          breed={pet.breed}
+          key={pet.id}
+        />
+      ))}
     </div>
   );
 };

@@ -162,3 +162,7 @@ document.getElementById('root') // Targeting root div in HTML file
 - The useState Hook provides us an array containing two values:
   - The actual value of the state.
   - A function to update that value.
+
+**useEffect**
+
+- https://pl.reactjs.org/docs/hooks-effect.html

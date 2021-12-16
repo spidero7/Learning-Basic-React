@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import SearchParams from "./SearchParams";
 
@@ -33,4 +33,9 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root")); // using function to render our React application
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+); // using function to render our React application

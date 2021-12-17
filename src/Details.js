@@ -2,11 +2,10 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 class Details extends Component {
-  constructor() {
-    super();
+  // Default state of our component
+  state = { loading: true };
 
-    this.state = { loading: true };
-  }
+  // Similar to useEffect - do sth when first render - access to Lifecycle Methods
   async componentDidMount() {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`

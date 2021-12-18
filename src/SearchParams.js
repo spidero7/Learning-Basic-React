@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"; // To add state and effect to a functional component
+import { useState, useEffect, useContext } from "react"; // To add state and effect to a functional component
+import ThemeContext from "./ThemeContext";
 import Pet from "./Pet";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
@@ -11,6 +12,7 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]); // Store all of the pets coming back from the API
   const [breeds] = useBreedList(animal);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => {
     requestPets();
@@ -73,7 +75,20 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button>Submit</button>
+        <label htmlFor="theme">
+          ThemeContext
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            onBlur={(e) => setTheme(e.target.value)}
+          >
+            <option value="darkblue">Dark Blue</option>
+            <option value="peru">Peru</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">Mediumorchid</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>

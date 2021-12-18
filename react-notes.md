@@ -171,3 +171,8 @@ document.getElementById('root') // Targeting root div in HTML file
 
 - <React.StrictMode></React.StrictMode> it will give you additional warnings about things you shouldn't be doing.
 - it's good to keep your team in line and not using legacy features or things that will be soon be deprecated.
+
+**Class components**
+
+- `this.state` - mutable == changeble
+- `this.props` - read only, data from parent component
